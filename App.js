@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import AuthScreen from './AuthScreen';
+import GameScreen from './GameScreen';
+import StartGameScreen from './StartGameScreen'; 
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Auth">
+        <Stack.Screen name="Auth" component={AuthScreen} options={{ title: 'Authentification' }} />
+        <Stack.Screen name="StartGame" component={StartGameScreen} options={{ title: 'Commencer le jeu' }} />
+        <Stack.Screen name="Game" component={GameScreen} options={{ title: 'Jeu' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
